@@ -33,14 +33,14 @@ public class VistaGeneral {
         do{
             System.out.println("1.Empresa");
             System.out.println("2.Salir");
-            //System.out.println("3.Directivos");
-            //System.out.println("4.Clientes");
+            System.out.println("3.Directivos");
+            System.out.println("4.Clientes");
             opcion=teclado.nextInt();
             switch(opcion){
                 case 1: vistaEmpresa.menu();break;
-                //case 2: vistaEmpleado.menu();break;
-                //case 3: vistaDirectivo.menu();break;
-                //case 4: vistaCliente.menu();break;
+                case 2: vistaEmpleado.menu();break;
+                case 3: vistaDirectivo.menu();break;
+                case 4: vistaCliente.menu();break;
             }
         }while(opcion<5);
     }
