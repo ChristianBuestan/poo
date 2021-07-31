@@ -1,0 +1,10 @@
+casa
+lobo
+malo
+dado
+saco
+mina
+daga
+bala
+topo
+coco
