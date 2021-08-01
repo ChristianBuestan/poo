@@ -5,73 +5,133 @@
  */
 package controlador;
 
+import Excepciones.ValidarCedula;
 import java.util.ArrayList;
 import java.util.List;
+import modelo.Cliente;
 import modelo.Directivo;
+import modelo.Empleado;
+import modelo.Persona;
 
 /**
  *
- * @author Cristian
+ * @author diego
  */
-public class ControladorPersona { //solo cuando hay herencia
+public class ControladorPersona {
+    private List<? super Persona> listaPersona;
+    private Persona seleccionado;
     
-    private List<Directivo> listaDirectivo;
-    private Directivo seleccionado;
     public ControladorPersona(){
-        //this se utiliza 
-        this.listaDirectivo=new ArrayList(); //this de esta clase
-        this.seleccionado=null;
+        listaPersona = new ArrayList();
+        seleccionado = null;
     }
     public long generarId(){
-        if(listaDirectivo.size()>0)
-            return listaDirectivo.get(listaDirectivo.size()-1).getId()+1;
+        if(listaPersona.size()>0)
+            return ((Persona)listaPersona.get(listaPersona.size() -1)).getId() + 1;
         return 1;
     }
-    public boolean crear( String cedula, String nombre, String apellido, String direccion, double SueldoBruto,String categoria){
-        Directivo directivo=new Directivo(this.generarId(), cedula, nombre, apellido, direccion, SueldoBruto,categoria);
-        return listaDirectivo.add(directivo);
+    public boolean crearDirectivo(String nombre, String apellido, String cedula, String direccion, double sueldoBruto, String categoria) throws ValidarCedula{
+        this.validarCedula(cedula);
+        Directivo directivo = new Directivo(generarId(), nombre, apellido, cedula, direccion, sueldoBruto, categoria);
+        return listaPersona.add(directivo);
     }
-    public Directivo buscar(String cedula){
-        for (Directivo directivo : listaDirectivo) {
-            if(directivo.getCedula().equals(cedula))
-                return directivo;
+    public boolean crearEmpleado(String nombre, String apellido, String cedula, String direccion, double sueldoBruto) throws ValidarCedula{
+        this.validarCedula(cedula);
+        Empleado empleado = new Empleado(generarId(), nombre, apellido, cedula, direccion, sueldoBruto);
+        return listaPersona.add(empleado);
+    }
+    public boolean crearCliente(String nombre, String apellido, String cedula, String direccion, String telefono) throws ValidarCedula{
+        this.validarCedula(cedula);
+        Cliente cliente = new Cliente(generarId(), nombre, apellido, cedula, direccion, telefono);
+        return listaPersona.add(cliente);
+    }
+    public Persona buscar(String cedula){
+        for (Object objeto : listaPersona) {
+            if(((Persona)objeto).getCedula().equals(cedula))
+                return (Persona)objeto;
         }
         return null;
     }
-    public boolean actualizar( String cedula, String nombre, String apellido, String direccion, double SueldoBruto,String categoria){
-        Directivo directivo=buscar(cedula);
-        if(directivo!=null){
-            int posicion=listaDirectivo.indexOf(directivo);
+    public boolean actualizarDirectivo(String nombre, String apellido, String cedula, String direccion, double sueldoBruto, String categoria){
+        Persona persona = buscar(cedula);
+        if(persona !=null){
+            int posicion = listaPersona.indexOf(persona);
+            Directivo directivo = (Directivo) persona;
             directivo.setApellido(apellido);
             directivo.setNombre(nombre);
-            directivo.setSueldoButro(SueldoBruto);
+            directivo.setSueldoButro(sueldoBruto);
             directivo.setCategoria(categoria);
             directivo.setDireccion(direccion);
-            listaDirectivo.set(posicion, directivo);
+            listaPersona.set(posicion, directivo);
+            return true;
+        }
+        return false;
+    }
+    public boolean actualizarEmpleador(String nombre, String apellido, String cedula, String direccion, double sueldoBruto){
+        Persona persona = buscar(cedula);
+        if(persona !=null){
+            int posicion = listaPersona.indexOf(persona);
+            Empleado empleado = (Empleado) persona;
+            empleado.setApellido(apellido);
+            empleado.setNombre(nombre);
+            empleado.setSueldoButro(sueldoBruto);
+            empleado.setDireccion(direccion);
+            listaPersona.set(posicion, empleado);
+            return true;
+        }
+        return false;
+    }
+    public boolean actualizarCliente(String nombre, String apellido, String cedula, String direccion, String telefono){
+        Persona persona = buscar(cedula);
+        if(persona !=null){
+            int posicion = listaPersona.indexOf(persona);
+            Cliente cliente = (Cliente) persona;
+            cliente.setApellido(apellido);
+            cliente.setNombre(nombre);
+            cliente.setDireccion(direccion);
+            cliente.setTelefono(telefono);
+            listaPersona.set(posicion, cliente);
             return true;
         }
         return false;
     }
     public boolean eliminar(String cedula){
-        Directivo directivo=buscar(cedula);
-        return listaDirectivo.remove(directivo);
+        Persona persona = this.buscar(cedula);
+        return listaPersona.remove(persona);
     }
-
-    public List<Directivo> getListaDirectivo() {
-        return listaDirectivo;
+    public List<? super Persona> getListaPersona() {
+        return listaPersona;
     }
-
-    public void setListaDirectivo(List<Directivo> listaDirectivo) {
-        this.listaDirectivo = listaDirectivo;
+    public void setListaPersona(List<? super Persona> listaPersona) {
+        this.listaPersona = listaPersona;
     }
-
-    public Directivo getSeleccionado() {
+    public Persona getSeleccionado() {
         return seleccionado;
     }
-
-    public void setSeleccionado(Directivo seleccionado) {
+    public void setSeleccionado(Persona seleccionado) {
         this.seleccionado = seleccionado;
     }
-    
-    
+    public boolean validarCedula(String cedula)throws ValidarCedula{
+        int suma=0;
+        if (cedula.length()==10) {
+            for (int i = 0; i < cedula.length()-1; i++) {
+                int valor=Integer.parseInt(String.valueOf(cedula.charAt(i)));
+                if (i==cedula.length()-1) {
+                    if(((10-suma%10)==valor) || (suma%10==valor&&valor==0)){
+                        return true;
+                    }
+                }
+                if (i%2==0) {
+                    int sum=valor*2;
+                    suma+=(sum>9)? sum-9: sum;
+                }else{
+                    suma+=valor;
+                }
+                
+            }
+            
+            //creamos nuestra excepcion en caso de no lograr validar la cedula
+        }
+        throw new ValidarCedula();
+    }
 }

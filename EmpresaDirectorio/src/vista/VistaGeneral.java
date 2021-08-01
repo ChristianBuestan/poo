@@ -19,13 +19,10 @@ public class VistaGeneral {
     private VistaEmpresa vistaEmpresa;
     private VistaCliente vistaCliente;
     private VistaEmpleado vistaEmpleado;
-    private VistaDirectivo vistaDirectivo;
     private Scanner teclado;
     public VistaGeneral(){
         vistaCliente=new VistaCliente();
-        vistaDirectivo=new VistaDirectivo();
         vistaEmpleado=new VistaEmpleado();
-        vistaEmpresa=new VistaEmpresa(vistaCliente,vistaEmpleado,vistaDirectivo);
         teclado=new Scanner(System.in);
     }
     public void menu(){

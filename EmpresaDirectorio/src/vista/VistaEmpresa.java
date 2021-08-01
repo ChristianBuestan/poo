@@ -18,12 +18,10 @@ public class VistaEmpresa {
     private ControladorEmpresa controladorEmpresa;
     private VistaCliente vistaCliente;
     private VistaEmpleado vistaEmpleado;
-    private VistaDirectivo vistaDirectivo;
     private Scanner teclado;
-    public VistaEmpresa(VistaCliente vistaCliente,VistaEmpleado vistaEmpleado,VistaDirectivo vistaDirectivo){
+    public VistaEmpresa(VistaCliente vistaCliente,VistaEmpleado vistaEmpleado){
         controladorEmpresa=new ControladorEmpresa();
         this.vistaCliente=vistaCliente;
-        this.vistaDirectivo=vistaDirectivo;
         this.vistaEmpleado=vistaEmpleado;
         teclado=new Scanner(System.in);
     }
@@ -50,7 +48,6 @@ public class VistaEmpresa {
                     System.out.println("empresa nombre");
                     break;
                 case 7:this.empleado();break;
-                case 8:this.directivo();break;
                 
             }
         }while(opcion<8);
@@ -98,11 +95,5 @@ public class VistaEmpresa {
             vistaEmpleado.menu();
         }
     }
-    public void directivo(){
-        Empresa empresa=buscar();
-        if(empresa!=null){
-            vistaDirectivo.getControladorDirectivo().setListaDirectivo(empresa.getListaDirectivo());
-            vistaDirectivo.menu();
-        }
-    }
+    
 }

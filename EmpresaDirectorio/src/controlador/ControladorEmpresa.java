@@ -38,7 +38,23 @@ public class ControladorEmpresa {
         //listaEmpresa.stream().filter(empresa->empresa.getNombre().equals(nombre)).findFirst();
         //no vale por el return
     }
-    
+    public Empresa buscar(long id){
+        for (Empresa empresa : listaEmpresa) {
+            if(empresa.getId() == id)
+                return empresa;
+        }
+        return null;
+    }
+    public boolean actualizar(long id, String nombre){
+        Empresa empresa = buscar(id);
+        if(empresa != null){
+            int posicion = listaEmpresa.indexOf(empresa);
+            empresa.setNombre(nombre);
+            listaEmpresa.set(posicion, empresa);
+            return true;
+        }
+        return false;
+    }
     public boolean actualizar(String nombreanterior, String nombre){
         Empresa empresa=buscar(nombreanterior);
         if(empresa!=null){
