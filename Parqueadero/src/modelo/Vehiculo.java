@@ -5,41 +5,50 @@
  */
 package modelo;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 /**
  *
- * @author Cristian
+ * @author diego
  */
-public class Vehiculo {
+public class Vehiculo implements Serializable{
     private long id;
     private String placa;
     private String marca;
     private String modelo;
     private Cliente propietario;
-    private List<Servicio> Listaservicios;
+    private List<Servicio> listaServicios;
+    
+    
 
     public Vehiculo(long id, String placa, String marca, String modelo) {
-        id=0;
-        placa = "";
-        marca = "";
-        modelo = "";
+        this.id = id;
+        this.placa = placa;
+        this.marca = marca;
+        this.modelo = modelo;
+        this.listaServicios = new ArrayList();
     }
 
-    
+    public Vehiculo(long id, String placa, String marca, String modelo, Cliente propietario, List<Servicio> listaServicios) {
+        this.id = id;
+        this.placa = placa;
+        this.marca = marca;
+        this.modelo = modelo;
+        this.propietario = propietario;
+        this.listaServicios = listaServicios;
+    }
+
     public Vehiculo(long id, String placa, String marca, String modelo, Cliente propietario) {
         this.id = id;
         this.placa = placa;
         this.marca = marca;
         this.modelo = modelo;
         this.propietario = propietario;
-        this.Listaservicios = new ArrayList();
+        this.listaServicios = new ArrayList();
     }
-
     
-    
-
     public long getId() {
         return id;
     }
@@ -80,18 +89,17 @@ public class Vehiculo {
         this.propietario = propietario;
     }
 
-    public List<Servicio> getListaservicios() {
-        return Listaservicios;
+    public List<Servicio> getListaServicios() {
+        return listaServicios;
     }
 
-    public void setListaservicios(List<Servicio> Listaservicios) {
-        this.Listaservicios = Listaservicios;
+    public void setListaServicios(List<Servicio> listaServicios) {
+        this.listaServicios = listaServicios;
     }
     
-
     @Override
     public String toString() {
-        return "Vehiculo{" + "id=" + id + ", placa=" + placa + ", marca=" + marca + ", modelo=" + modelo +". Propietario= "+propietario+ '}';
+        return "Vehiculo{" + "id=" + id + ", placa=" + placa + ", marca=" + marca + ", modelo=" + modelo + ", Propietario = "+ propietario+ '}';
     }
     
 }
