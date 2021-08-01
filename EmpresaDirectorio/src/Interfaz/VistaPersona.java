@@ -301,16 +301,16 @@ public class VistaPersona extends javax.swing.JInternalFrame {
                     JOptionPane.showMessageDialog(this, ex.getMessage());
                 }
             }else
-                controladorPersona.actualizarEmpleador(txtNombre.getText(), txtApellido.getText(), txtCedula.getText(), txtDireccion.getText(), Double.parseDouble(txtSueldo.getText()));
+                controladorPersona.actualizarEmpleador(txtNombre.getText(),  txtCedula.getText(),txtApellido.getText(), txtDireccion.getText(), Double.parseDouble(txtSueldo.getText()));
         }else if(tipo == Directivo.class){
             if(controladorPersona.getSeleccionado() == null)
                 try {
-                    controladorPersona.crearDirectivo(txtNombre.getText(), txtApellido.getText(), txtCedula.getText(), txtDireccion.getText(), Double.parseDouble(txtSueldo.getText()), txtCategoria.getText());
+                    controladorPersona.crearDirectivo(  txtCedula.getText(),txtNombre.getText(),txtApellido.getText(), txtDireccion.getText(), Double.parseDouble(txtSueldo.getText()), txtCategoria.getText());
             } catch (ValidarCedula ex) {
                 JOptionPane.showMessageDialog(this, ex.getMessage());
             }
             else
-                controladorPersona.actualizarDirectivo(txtNombre.getText(), txtApellido.getText(), txtCedula.getText(), txtDireccion.getText(), Double.parseDouble(txtSueldo.getText()), txtCategoria.getText());
+                controladorPersona.actualizarDirectivo(txtNombre.getText(),  txtCedula.getText(),txtApellido.getText(), txtDireccion.getText(), Double.parseDouble(txtSueldo.getText()), txtCategoria.getText());
         }
         cargarDatos();
         limpiarDatos();

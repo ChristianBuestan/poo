@@ -31,18 +31,18 @@ public class ControladorPersona {
         return 1;
     }
     public boolean crearDirectivo(String nombre, String apellido, String cedula, String direccion, double sueldoBruto, String categoria) throws ValidarCedula{
-        this.validarCedula(cedula);
-        Directivo directivo = new Directivo(generarId(), nombre, apellido, cedula, direccion, sueldoBruto, categoria);
+        //this.validarCedula(cedula);
+        Directivo directivo = new Directivo(generarId(), cedula,nombre,apellido,direccion, sueldoBruto, categoria);
         return listaPersona.add(directivo);
     }
     public boolean crearEmpleado(String nombre, String apellido, String cedula, String direccion, double sueldoBruto) throws ValidarCedula{
-        this.validarCedula(cedula);
-        Empleado empleado = new Empleado(generarId(), nombre, apellido, cedula, direccion, sueldoBruto);
+        //this.validarCedula(cedula);
+        Empleado empleado = new Empleado(generarId(), cedula, nombre,apellido,direccion, sueldoBruto);
         return listaPersona.add(empleado);
     }
     public boolean crearCliente(String nombre, String apellido, String cedula, String direccion, String telefono) throws ValidarCedula{
-        this.validarCedula(cedula);
-        Cliente cliente = new Cliente(generarId(), nombre, apellido, cedula, direccion, telefono);
+        //this.validarCedula(cedula);
+        Cliente cliente = new Cliente(this.generarId(), cedula, nombre, apellido, direccion);
         return listaPersona.add(cliente);
     }
     public Persona buscar(String cedula){

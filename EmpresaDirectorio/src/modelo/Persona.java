@@ -15,6 +15,7 @@ public class Persona {
     private String nombre;
     private String apellido;
     private String direccion;
+    
 
     public Persona(long id, String cedula, String nombre, String apellido, String direccion) {
         this.id = id;
