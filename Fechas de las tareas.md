@@ -1,6 +1,8 @@
 # poo
 UPS - Programacion Orientada Objetos
-Fechas de cada una de las tareas
+Fechas de cada una de las tareas 
+
+Primer interciclo:
 
 Deberes_____
 
@@ -30,5 +32,35 @@ Empresa Directorio: 25/5/2021
 
 RegistroFechaDNI: 27/5/2021
 
+Prueba MVC: 17/6/2021
+
 Ejercicios hechos en Clase: PPO_holamundo
 31/3/2021
+
+Segundo interciclo:
+
+3_En Raya: 21/06/2021
+
+Deber calculadora: 13/06/2021
+
+Deber laberinto: 29/06/2021
+
+Deber seleccion de figuras: 21/06/2021
+
+GUI INTERFAZ: 23/06/2021
+
+Introduccion Gui:7/6/2021
+
+Introduccion Gui_1: 10/6/2021
+
+Introduccion Gui Graficas: 15/6/2021
+
+Introduccion Gui Azar: 10/6/2021
+
+Introduccion Gui MOUSE: 22/6/2021
+
+Proyecto final_Trabajo Integrado: 19/07/2021
+
+Examen MVC Excepciones Archivos: 29/07/2021
+
+
